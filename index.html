@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>NPS Park Search</title>
+</head>
+<body>
+    <header>
+        <h1>Information on NPS locations</h1>
+    </header>
+    <main>
+        <form>
+            <label for="q">Keywords?</label>
+            <input type="text" id="q" name="q" autocomplete='off' required>
+            <br>
+            <label for="stateCode">State?</label>
+            <input type="text" id="stateCode" name="stateCode" autocomplete='off'>
+            <br>
+            <label for="numRes">Max Results?</label>
+            <input type="number" id="numRes" name="numRes">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <section class="results">
+        </section>
+    </main>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
