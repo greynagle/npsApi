@@ -34,36 +34,42 @@ function handleSubmit() {
     $('input[type="submit"]').click(e=>{
         e.preventDefault()
         getData()
-        updateList()
+        // updateList()
     })
 }
 
 function getData(){
     let query = state.get;
     if(state.stateCode!==''){
-        query.concat(`stateCode=${state.stateCode}&`)
+        query=query.concat(`stateCode=${state.stateCode}&`)
     }
 
-    query.concat(`limit=${state.numRes}&`)
+    query=query.concat(`limit=${state.numRes}&`)
 
     if(state.q!==''){
-        query.concat(`q=${state.q}&`)
+        query=query.concat(`q=${state.q}&`)
     } else {
         return alert('Must enter a query')
     }
 
-    query.concat(`api_key=${state.apiKey}`)
+    query=query.concat(`api_key=${state.apiKey}`)
 
     fetch(query)
         .then(response => response.json())
         .then(responseJson => {
             console.log(responseJson)
-            return state.results=responseJson})
+            state.results=responseJson
+            updateList()
+        })
 }
 
 function updateList(){
     $('.results').empty();
-    $('.results').html("got here")
+    let data=state.results.data.reduce((acc,val) => {
+        return acc+=`<h2>${val.fullName}</h2><p>${val.description}</p><a href="${val.url}" target='blank'>${val.url}</a>`
+    },'')
+    console.log(data)
+    $('.results').html(data)
 }
 
 function main() {
